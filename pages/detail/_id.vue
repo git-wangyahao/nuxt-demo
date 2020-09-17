@@ -31,13 +31,10 @@ export default {
     }
   },
   mounted () {
-    console.log(this.$route.params) //获取路由
-    console.log(this.$route.query)
+
   },
   async asyncData({ params }) {
-    console.log(params) 
     const res  = await Detail(params.id)
-    console.log("res",res.data.detail)
     const detail = res.data.detail
     return { detail: detail }
   },

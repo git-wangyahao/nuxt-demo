@@ -22,7 +22,8 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'http://at.alicdn.com/t/font_2061186_ay9y664t14j.css' }
     ]
   },
   /*
@@ -37,6 +38,14 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    {
+      src: '~plugins/vue-concise-slider',
+      ssr: false,
+      mode: 'client'
+    },
+    {
+      src: '~plugins/element-ui',
+    }
   ],
   /*
   ** Auto import components

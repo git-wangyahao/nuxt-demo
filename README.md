@@ -1,4 +1,4 @@
-# wingtech
+  nuxt-demo
 
 ## Build Setup
 

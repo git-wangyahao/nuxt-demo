@@ -30,6 +30,10 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 /* 谷歌内核自定义滚动条 */
 /* width */
 ::-webkit-scrollbar {

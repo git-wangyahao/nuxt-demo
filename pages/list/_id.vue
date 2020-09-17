@@ -1,27 +1,32 @@
 <template>
   <div class="lists">
-    <div class="list" v-for="item in list " :key="item.id" @click="handleClick(item.id)">
-      <div class="list-item" >
-        <img :src="item.imgUrl" alt="">
-      </div>
-      <div class="list-item-con" >
-          <h4 class="title">  {{ item.title }} </h4>
-          <div class="article-list-attr">
-            <div class="article-list-attr-left">
-              <span class="list-article-name">{{ item.author }}</span>
-              <span class="list-article-name">影片推荐</span>
-              <span class="list-article-name">2年前</span>
+    <div class="left">
+      <div class="list" v-for="item in list " :key="item.id" @click="handleClick(item.id)">
+        <div class="list-item" >
+          <img :src="item.imgUrl" alt="">
+        </div>
+        <div class="list-item-con" >
+            <h4 class="title">  {{ item.title }} </h4>
+            <div class="article-list-attr">
+              <div class="article-list-attr-left">
+                <span class="list-article-name">{{ item.author }}</span>
+                <span class="list-article-name">影片推荐</span>
+                <span class="list-article-name">2年前</span>
+              </div>
+              <div class="article-list-attr-right">
+                <span class="list-article-name">👁6.10k</span>
+                <span class="list-article-name">短信1</span>
+                <span class="list-article-name">赞21</span>
+              </div>
             </div>
-            <div class="article-list-attr-right">
-              <span class="list-article-name">👁6.10k</span>
-              <span class="list-article-name">短信1</span>
-              <span class="list-article-name">赞21</span>
+            <div class="content">
+              {{ item.content }}
             </div>
-          </div>
-          <div class="content">
-            {{ item.content }}
-          </div>
+        </div>
       </div>
+    </div>
+    <div class="right">
+      <new-posts></new-posts>
     </div>
   </div>
   
@@ -29,12 +34,16 @@
 
 <script>
 import { List } from '~/api/list'
+import newPosts from '../components/list-components/new-posts'
 export default {
   data ()  { 
     return  {
       pageId: 0,
       list: []
     }
+  },
+  components:{
+    newPosts
   },
   mounted:{
 
@@ -45,9 +54,7 @@ export default {
     // this.pageId = this.$route.params.id
   },
   async asyncData({ params }) {
-    console.log(params) 
     const res  = await List()
-    console.log("res",res.data.list)
     const list = res.data.list
     return { list: list }
   },
@@ -84,8 +91,6 @@ export default {
   .list {
     display: flex;
     justify-content: flex-start;
-    width: 1300px;
-    margin: 0 auto;
     padding: 10px;
     cursor: pointer;
     .list-item {
@@ -110,4 +115,25 @@ export default {
       }
     }
   }
+  .lists {
+  margin: 0 auto;
+  min-height: 90vh;
+  width: 1300px;
+  display: flex;
+  /* align-items: center; */
+  .left {
+    flex: 2;
+    margin-right: 20px;
+  }
+  .right {
+    flex: 1;
+    width: 300px;
+    img{
+      width: 100%;
+      height: auto;
+      vertical-align: top;
+      border-radius: 3px;
+    }
+  }
+}
 </style>
